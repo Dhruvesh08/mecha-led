@@ -26,11 +26,11 @@ fn main() -> Result<(), std::io::Error> {
     print!("Enter a value for LED control: ");
     io::stdout().flush()?;
     io::stdin().read_line(&mut input)?;
-
+  
     match input.trim() {
-        "on" => execute_command("echo 1 | sys/class/leds/red-led/brightness")?,
-        "off" => execute_command("echo 0 |  sys/class/leds/red-led/brightness")?,
-        "heartbeat" => execute_command("echo heartbeat | sudo tee /sys/class/leds/sys_led/trigger")?,
+        "on" => execute_command("echo 0 > /sys/class/leds/red-led/brightness")?,
+        "off" => execute_command("echo 1 > /sys/class/leds/red-led/brightness")?,
+        "heartbeat" => execute_command("echo heartbeat | tee /sys/class/leds/sys_led/trigger")?,
         _ => println!("Invalid input!"),
     }
 
