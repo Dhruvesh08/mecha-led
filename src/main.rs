@@ -28,8 +28,8 @@ fn main() -> Result<(), std::io::Error> {
     io::stdin().read_line(&mut input)?;
   
     match input.trim() {
-        "on" => execute_command("echo 0 > /sys/class/leds/red-led/brightness")?,
-        "off" => execute_command("echo 1 > /sys/class/leds/red-led/brightness")?,
+        "on" => execute_command("echo 1 > /sys/class/leds/red-led/brightness")?,
+        "off" => execute_command("echo 0 > /sys/class/leds/red-led/brightness")?,
         "heartbeat" => execute_command("echo heartbeat | tee /sys/class/leds/sys_led/trigger")?,
         _ => println!("Invalid input!"),
     }
